@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/exchange-rates/static/css/main.f697f577.chunk.css",
+    "main.js": "/exchange-rates/static/js/main.aed8a29e.chunk.js",
+    "main.js.map": "/exchange-rates/static/js/main.aed8a29e.chunk.js.map",
+    "runtime-main.js": "/exchange-rates/static/js/runtime-main.f42318c0.js",
+    "runtime-main.js.map": "/exchange-rates/static/js/runtime-main.f42318c0.js.map",
+    "static/js/2.20ad241a.chunk.js": "/exchange-rates/static/js/2.20ad241a.chunk.js",
+    "static/js/2.20ad241a.chunk.js.map": "/exchange-rates/static/js/2.20ad241a.chunk.js.map",
+    "index.html": "/exchange-rates/index.html",
+    "precache-manifest.7eb933d12827dfa702edcad36183fb1e.js": "/exchange-rates/precache-manifest.7eb933d12827dfa702edcad36183fb1e.js",
+    "service-worker.js": "/exchange-rates/service-worker.js",
+    "static/css/main.f697f577.chunk.css.map": "/exchange-rates/static/css/main.f697f577.chunk.css.map",
+    "static/js/2.20ad241a.chunk.js.LICENSE.txt": "/exchange-rates/static/js/2.20ad241a.chunk.js.LICENSE.txt",
+    "static/media/oval.svg": "/exchange-rates/static/media/oval.be00fc4a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f42318c0.js",
+    "static/js/2.20ad241a.chunk.js",
+    "static/css/main.f697f577.chunk.css",
+    "static/js/main.aed8a29e.chunk.js"
+  ]
+}
