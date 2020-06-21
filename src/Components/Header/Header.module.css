@@ -1,0 +1,43 @@
+.header{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #006400;
+    padding: 0 10px 0 20px;
+}
+
+.headerLogo{
+    font-size: 24px;
+    color: #FFF;
+    text-transform: uppercase;
+    line-height: 80px;
+}
+
+.nav{
+    display: flex;
+}
+
+.item{
+    padding: 0 20px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    transition: .3s;
+    line-height: 80px;
+}
+
+.item:hover, .active{
+    background-color: #FFFFFF;
+    color: darkgreen;
+    font-size: 20px;
+
+}
+
+
+
+
+
+
+
+
+

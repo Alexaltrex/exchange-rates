@@ -1,0 +1,18 @@
+.courseMenu{
+    /*height: 50px;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.courseMenuBase {
+    display: flex;
+    margin: 10px 0;
+}
+
+.courseMenuDate {
+    display: flex;
+    margin-bottom: 10px;
+}
+

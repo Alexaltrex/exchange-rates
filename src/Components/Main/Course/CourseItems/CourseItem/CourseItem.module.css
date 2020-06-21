@@ -1,0 +1,46 @@
+.courseItems{
+    display: flex;
+    justify-content: center;
+}
+
+.nameOfCurrency{
+    height: 30px;
+    width: 300px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.courseItems:nth-child(odd) .nameOfCurrency{
+    background-color: #aaa;
+}
+.courseItems:nth-child(even) .nameOfCurrency{
+    /*background-color: #fcf094;*/
+}
+
+.designationOfCurrency{
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.courseItems:nth-child(odd) .designationOfCurrency{
+    /*background-color: #bbb*/
+}
+.courseItems:nth-child(even) .designationOfCurrency{
+    background-color: #aaa;
+}
+
+.rateOfCurrency{
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.courseItems:nth-child(odd) .rateOfCurrency{
+    background-color: #aaa;
+}
+.courseItems:nth-child(even) .rateOfCurrency{
+    /*background-color: #fcf094;*/
+}

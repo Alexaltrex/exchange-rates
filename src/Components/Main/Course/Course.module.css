@@ -1,0 +1,32 @@
+.course {
+
+}
+
+.courseHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.courseHeaderName {
+    height: 30px;
+    width: 300px;
+    line-height: 30px;
+    padding-left: 10px;
+    background-color: #ccca66;
+}
+
+.courseHeaderCode {
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    padding-left: 10px;
+    background-color: #b2b067;
+}
+
+.courseHeaderRate {
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    padding-left: 10px;
+    background-color: #ccca66;
+}
