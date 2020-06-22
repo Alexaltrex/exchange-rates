@@ -2,6 +2,10 @@ import React from 'react';
 import style from './CourseItem.module.css'
 
 const CourseItem = (props) => {
+    let styleColor;
+    if (+props.change>0) {
+        styleColor = style.green
+    } else {styleColor = style.red}
     return (
         <div className={style.courseItems}>
             <div className={style.nameOfCurrency}>
@@ -13,7 +17,9 @@ const CourseItem = (props) => {
             <div className={style.rateOfCurrency}>
                 {props.rateOfCurrency}
             </div>
-
+            <div className={`${style.change} ${styleColor}`}>
+                {props.change}
+            </div>
         </div>
     )
 };

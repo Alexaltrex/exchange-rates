@@ -1,4 +1,10 @@
-import {changeDate, setDate, setRates, toggleLoading} from "../../../../../Redux/course-reduser";
+import {
+    changeDate,
+    setDate,
+    setRates,
+    setRatesBefore,
+    toggleLoading
+} from "../../../../../Redux/course-reduser";
 import {connect} from "react-redux";
 import React from "react";
 import CourseMenuDate from "./CourseMenuDate";
@@ -66,14 +72,18 @@ class CourseMenuDateContainerAJAX extends React.Component {
 
     componentDidUpdate(prevProps) {
         let date = this.props.date;
+        let dateBefore = this.props.dateBefore;
         let base = this.props.base;
-        //console.log(base);
+
         if (prevProps.date !== date) {
             this.props.toggleLoading(true);
             const axios = require('axios');
-            axios.get(`https://api.exchangeratesapi.io/history?start_at=${date}&end_at=${date}&base=${base}`)
-                .then(response => {
-                    this.props.setRates(response.data.rates[date]);
+            let getRates = () => axios.get(`https://api.exchangeratesapi.io/history?start_at=${date}&end_at=${date}&base=${base}`);
+            let getRatesBefore = () => axios.get(`https://api.exchangeratesapi.io/history?start_at=${dateBefore}&end_at=${dateBefore}&base=${base}`);
+            Promise.all([getRates(), getRatesBefore()])
+                .then(results => {
+                    this.props.setRates(results[0].data.rates[date]);
+                    this.props.setRatesBefore(results[1].data.rates[dateBefore]);
                     this.props.toggleLoading(false);
                 });
         }
@@ -85,7 +95,8 @@ class CourseMenuDateContainerAJAX extends React.Component {
             date={this.dateTranslate(this.props.date)}
             dateNow={this.dateTranslate(this.props.dateNow)}
             leftArrowClick={this.props.changeDate}
-            rightArrowClick={(this.props.date !== this.props.dateNow) ? this.props.changeDate : ()=>{}}
+            rightArrowClick={(this.props.date !== this.props.dateNow) ? this.props.changeDate : () => {
+            }}
         />
     }
 }
@@ -93,6 +104,7 @@ class CourseMenuDateContainerAJAX extends React.Component {
 let mapStateToProps = (state) => {
     return {
         date: state.course.date,
+        dateBefore: state.course.dateBefore,
         dateNow: state.course.dateNow,
         base: state.course.base,
         isLoading: state.course.isLoading
@@ -100,6 +112,6 @@ let mapStateToProps = (state) => {
 };
 
 const CourseMenuDateContainer = connect(mapStateToProps,
-    {setRates, changeDate, setDate, toggleLoading})(CourseMenuDateContainerAJAX);
+    {setRates, setRatesBefore, changeDate, setDate, toggleLoading})(CourseMenuDateContainerAJAX);
 
 export default CourseMenuDateContainer;

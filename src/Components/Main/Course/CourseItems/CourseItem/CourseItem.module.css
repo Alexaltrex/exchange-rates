@@ -8,10 +8,12 @@
     width: 300px;
     line-height: 30px;
     padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 0 3px 3px 0;
 }
 
 .courseItems:nth-child(odd) .nameOfCurrency{
-    background-color: #aaa;
+    background-color: #ccc;
 }
 .courseItems:nth-child(even) .nameOfCurrency{
     /*background-color: #fcf094;*/
@@ -22,25 +24,45 @@
     width: 100px;
     line-height: 30px;
     padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
 }
 
-.courseItems:nth-child(odd) .designationOfCurrency{
-    /*background-color: #bbb*/
-}
 .courseItems:nth-child(even) .designationOfCurrency{
-    background-color: #aaa;
+    background-color: #ccc;
 }
 
 .rateOfCurrency{
     height: 30px;
     width: 100px;
     line-height: 30px;
-    padding-left: 10px;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
 }
 
 .courseItems:nth-child(odd) .rateOfCurrency{
-    background-color: #aaa;
+    background-color: #ccc;
 }
-.courseItems:nth-child(even) .rateOfCurrency{
-    /*background-color: #fcf094;*/
+
+.change{
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border-radius: 3px 0 0 3px;
+}
+.green{
+   color: #09aa00;
+}
+
+.red{
+    color: red;
+}
+
+.courseItems:nth-child(even) .change{
+    background-color: #ccc;
 }

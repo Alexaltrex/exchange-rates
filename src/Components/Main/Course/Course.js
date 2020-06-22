@@ -17,6 +17,9 @@ const Course = () => {
                 <div className={style.courseHeaderRate}>
                     Курс
                 </div>
+                <div className={style.change}>
+                    Изменение
+                </div>
 
             </div>
             <CourseItemsContainer/>

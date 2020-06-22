@@ -2,7 +2,6 @@ const SET_NEW_BASE = 'SET-NEW-BASE';
 const SET_NEW_RATES = 'SET-NEW-RATES';
 const SET_NEW_RATES_BEFORE = 'SET-NEW-RATES-BEFORE';
 const SET_DATE = 'SET-DATE';
-const SET_DATE_BEFORE = 'SET-DATE-BEFORE';
 const CHANGE_DATE = 'CHANGE_DATE';
 const TOGGLE_LOADING = 'TOGGLE-LOADING';
 
@@ -43,13 +42,40 @@ let initialState = {
         ['JPY', 'Японская иена']
     ],
     rates: [],
-    retesBefore: [],
+    ratesBefore: [],
     base: 'EUR',
     dateNow: '2010-06-06', // дата на данный момент времени
     date: '2010-06-06',     // изменяемая дата
     dateBefore: '2010-06-06',
     isloading: false
 };
+
+// функция получения следующей/предыдущей даты
+function getDateNew(change, date){
+    // перевод даты из формата 'YYYY-MM-DD' в объект Date
+    let year = date.match(/\d+/g)[0];
+    let month = date.match(/\d+/g)[1] - 1;
+    let day = date.match(/\d+/g)[2];
+    let dateJS = new Date(year, month, day);
+    // получение предыдущей/следующей даты
+    let dateNewJS;
+    if (change === 'minus') {
+        dateNewJS = new Date(dateJS.getTime() - 24 * 60 * 60 * 1000);
+    } else if (change === 'plus') {
+        dateNewJS = new Date(dateJS.getTime() + 24 * 60 * 60 * 1000);
+    }
+    // перевод предыдущей/следующей даты из объекта Date в формат state
+    let yearNew = dateNewJS.getFullYear();
+    let monthNew = dateNewJS.getMonth() + 1;
+    if (monthNew < 10) {
+        monthNew = '0' + monthNew;
+    }
+    let dayNew = dateNewJS.getDate();
+    if (dayNew < 10) {
+        dayNew = '0' + dayNew;
+    }
+    return `${yearNew}-${monthNew}-${dayNew}`;
+}
 
 const courseReduser = (state = initialState, action) => {
 
@@ -62,48 +88,25 @@ const courseReduser = (state = initialState, action) => {
             }
         }
 
-        case SET_DATE: {// первоначальная установка текущей даты и даты на данный момент времени
+        case SET_DATE: {// первоначальная установка текущей даты и даты на данный момент времени и предыдущей дата
+
             return {
                 ...state,
                 dateNow: action.date,
-                date: action.date
-            }
-        }
-
-        case SET_DATE_BEFORE: {// установка предыдущей даты
-            return {
-                ...state,
-                dateBefore: action.dateBefore
+                date: action.date,
+                dateBefore: getDateNew('minus', action.date)
             }
         }
 
         case CHANGE_DATE: {
-            // перевод даты из state в объект Date
-            let year = state.date.match(/\d+/g)[0];
-            let month = state.date.match(/\d+/g)[1] - 1;
-            let day = state.date.match(/\d+/g)[2];
-            let dateJS = new Date(year, month, day);
-            // получение предыдущей/следующей даты
-            let dateNewJS;
-            if (action.change === 'minus') {
-                dateNewJS = new Date(dateJS.getTime() - 24 * 60 * 60 * 1000);
-            } else if (action.change === 'plus' && state.date !== state.dateNow) {
-                dateNewJS = new Date(dateJS.getTime() + 24 * 60 * 60 * 1000);
-            }
-            // перевод предыдущей/следующей даты из объекта Date в формат state
-            let yearNew = dateNewJS.getFullYear();
-            let monthNew = dateNewJS.getMonth() + 1;
-            if (monthNew < 10) {
-                monthNew = '0' + monthNew;
-            }
-            let dayNew = dateNewJS.getDate();
-            if (dayNew < 10) {
-                dayNew = '0' + dayNew;
-            }
-            let dateNew = `${yearNew}-${monthNew}-${dayNew}`;
+            let dateNew = getDateNew(action.change, state.date);
+            let dateBeforeNew = getDateNew('minus', dateNew);
+            console.log(dateNew)
+            console.log(dateBeforeNew)
             return {
                 ...state,
-                date: dateNew
+                date: dateNew,
+                dateBefore: dateBeforeNew
             }
         }
 
@@ -112,7 +115,7 @@ const courseReduser = (state = initialState, action) => {
             for (let key in action.rates) {
                 ratesArr.push({
                     designationOfCurrency: key,
-                    rateOfCurrency: (+action.rates[key]).toPrecision(4)
+                    rateOfCurrency: (1 / (+action.rates[key])).toFixed(6)
                 });
             }
 
@@ -120,7 +123,7 @@ const courseReduser = (state = initialState, action) => {
             if (state.base === 'EUR') {
                 ratesArr.push({
                     designationOfCurrency: 'EUR',
-                    rateOfCurrency: '1'
+                    rateOfCurrency: '1.0000'
                 });
             }
 
@@ -153,7 +156,7 @@ const courseReduser = (state = initialState, action) => {
             for (let key in action.ratesBefore) {
                 ratesArr.push({
                     designationOfCurrency: key,
-                    rateOfCurrency: (+action.ratesBefore[key]).toPrecision(4)
+                    rateOfCurrency: (1 / (+action.ratesBefore[key])).toFixed(6)
                 });
             }
 
@@ -226,13 +229,6 @@ export const setDate = (date) => (
     {
         type: SET_DATE,
         date: date
-    }
-);
-
-export const setDateBefore = (dateBefore) => (
-    {
-        type: SET_DATE_BEFORE,
-        dateBefore: dateBefore
     }
 );
 

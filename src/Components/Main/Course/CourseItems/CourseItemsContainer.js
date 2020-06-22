@@ -2,7 +2,7 @@ import React from 'react';
 import style from './CourseItems.module.css'
 import CourseItems from "./CourseItems";
 import {connect} from "react-redux";
-import {setDate, setDateBefore, setRates, setRatesBefore, toggleLoading} from "../../../../Redux/course-reduser";
+import {setDate, setRates, setRatesBefore, toggleLoading} from "../../../../Redux/course-reduser";
 import Preloader from "../../../Preloader/Preloader";
 
 class CourseItemsContainerAJAX extends React.Component {
@@ -28,28 +28,23 @@ class CourseItemsContainerAJAX extends React.Component {
         return `${yearBefore}-${monthBefore}-${dayBefore}`;
     }
 
-
     componentDidMount() {
         const axios = require('axios');
         let base = this.props.base;
         this.props.toggleLoading(true);
+        // получение из запроса - даты, курсов и вычисление предыдущей даты
+        // передача даты, предыдущей даты и курсов в хранилище
         axios.get(`https://api.exchangeratesapi.io/latest?base=${base}`)
             .then(response => {
                 let date = response.data.date;
-                console.log(date);
                 let dateBefore = this.getDateBefore(response.data.date);
-                console.log(dateBefore);
                 this.props.setRates(response.data.rates);
                 this.props.setDate(date);
-                this.props.setDateBefore(dateBefore);
-                //this.props.toggleLoading(false);
-
+                // второй запрос на основании результатов первого (предыдущей даты)
+                // получение курсов предыдущей даты и передача их в хранилище
                 axios.get(`https://api.exchangeratesapi.io/history?start_at=${dateBefore}&end_at=${dateBefore}&base=${this.props.base}`)
                     .then(response => {
                         this.props.setRatesBefore(response.data.rates[dateBefore]);
-                        debugger
-                        //this.props.setDate(response.data.date);
-                        //this.props.setDateBefore(this.getDateBefore(response.data.date));
                         this.props.toggleLoading(false);
                     });
 
@@ -61,10 +56,11 @@ class CourseItemsContainerAJAX extends React.Component {
         return (
             <>
                 {this.props.isLoading ? <Preloader/> : null}
-                <CourseItems
-                    course={this.props.course}
-                    baseName={this.props.baseName}
-                    rates={this.props.rates}
+                <CourseItems {...this.props}
+                    // course={this.props.course}
+                    // baseName={this.props.baseName}
+                    // rates={this.props.rates}
+                    // ratesBefore={this}
                 />
             </>
         )
@@ -77,11 +73,12 @@ let mapStateToProps = (state) => {
         base: state.course.base,
         baseName: state.course.baseName,
         rates: state.course.rates,
+        ratesBefore: state.course.ratesBefore,
         isLoading: state.course.isLoading
     }
 };
 
-let CourseItemsContainer = connect(mapStateToProps, {
-    setRates, setDate, toggleLoading, setDateBefore, setRatesBefore})(CourseItemsContainerAJAX);
+let CourseItemsContainer = connect(mapStateToProps,
+    {setRates, setDate, toggleLoading, setRatesBefore})(CourseItemsContainerAJAX);
 
 export default CourseItemsContainer;

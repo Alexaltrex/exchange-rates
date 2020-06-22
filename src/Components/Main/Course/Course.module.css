@@ -13,20 +13,34 @@
     line-height: 30px;
     padding-left: 10px;
     background-color: #ccca66;
+    box-sizing: border-box;
 }
 
 .courseHeaderCode {
     height: 30px;
     width: 100px;
     line-height: 30px;
-    padding-left: 10px;
     background-color: #b2b067;
+    padding-left: 10px;
+    box-sizing: border-box;
 }
 
 .courseHeaderRate {
     height: 30px;
     width: 100px;
     line-height: 30px;
-    padding-left: 10px;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
     background-color: #ccca66;
+}
+
+.change {
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+    background-color: #b2b067;
 }
