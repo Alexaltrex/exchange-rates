@@ -11,18 +11,19 @@ const Main = () => {
             <Switch>
                 <Route
                     exact path='/'
-                    render={() => <Course/>}
-                />
+                    render={() => <Course/>}/>
 
                 <Route
-                    exact path='/statistic'
-                    render={() => <Statistic/>}
-                />
+                    path='/exchange-rates'
+                    render={() => <Course/>}/>
 
                 <Route
-                    exact path='/converter'
-                    render={() => <Converter/>}
-                />
+                    path='/statistic'
+                    render={() => <Statistic/>}/>
+
+                <Route
+                    path='/converter'
+                    render={() => <Converter/>}/>
 
             </Switch>
 

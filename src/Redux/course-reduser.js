@@ -1,9 +1,15 @@
+import {DATE as date, DATE} from "../DAL/date";
+import {API} from "../DAL/api";
+
 const SET_NEW_BASE = 'SET-NEW-BASE';
 const SET_NEW_RATES = 'SET-NEW-RATES';
 const SET_NEW_RATES_BEFORE = 'SET-NEW-RATES-BEFORE';
 const SET_DATE = 'SET-DATE';
 const CHANGE_DATE = 'CHANGE_DATE';
 const TOGGLE_LOADING = 'TOGGLE-LOADING';
+const SET_NEW_CURRENCY = 'SET-NEW-CURRENCY';
+const SET_NEW_PERIOD = 'SET-NEW-PERIOD';
+const SET_RATES_FOR_PERIOD = 'SET-RATES-FOR-PERIOD';
 
 let initialState = {
     baseName: [
@@ -43,39 +49,18 @@ let initialState = {
     ],
     rates: [],
     ratesBefore: [],
-    base: 'EUR',
+    base: 'RUB',
     dateNow: '2010-06-06', // дата на данный момент времени
     date: '2010-06-06',     // изменяемая дата
     dateBefore: '2010-06-06',
-    isloading: false
+    isloading: false,
+    currency: 'EUR',// выбранная валюта для статистики
+    ratesForPeriod: [], // массив курсов за период
+    datesForPeriod: [], // массив дат за период
+    period: 14, // период
+    startPeriodDate: '' // начальная дата периода
 };
 
-// функция получения следующей/предыдущей даты
-function getDateNew(change, date){
-    // перевод даты из формата 'YYYY-MM-DD' в объект Date
-    let year = date.match(/\d+/g)[0];
-    let month = date.match(/\d+/g)[1] - 1;
-    let day = date.match(/\d+/g)[2];
-    let dateJS = new Date(year, month, day);
-    // получение предыдущей/следующей даты
-    let dateNewJS;
-    if (change === 'minus') {
-        dateNewJS = new Date(dateJS.getTime() - 24 * 60 * 60 * 1000);
-    } else if (change === 'plus') {
-        dateNewJS = new Date(dateJS.getTime() + 24 * 60 * 60 * 1000);
-    }
-    // перевод предыдущей/следующей даты из объекта Date в формат state
-    let yearNew = dateNewJS.getFullYear();
-    let monthNew = dateNewJS.getMonth() + 1;
-    if (monthNew < 10) {
-        monthNew = '0' + monthNew;
-    }
-    let dayNew = dateNewJS.getDate();
-    if (dayNew < 10) {
-        dayNew = '0' + dayNew;
-    }
-    return `${yearNew}-${monthNew}-${dayNew}`;
-}
 
 const courseReduser = (state = initialState, action) => {
 
@@ -88,19 +73,26 @@ const courseReduser = (state = initialState, action) => {
             }
         }
 
-        case SET_DATE: {// первоначальная установка текущей даты и даты на данный момент времени и предыдущей дата
+        case SET_NEW_CURRENCY: {
+            return {
+                ...state,
+                currency: action.currency
+            }
+        }
 
+        case SET_DATE: {// первоначальная установка текущей даты и даты на данный момент времени и предыдущей дата
             return {
                 ...state,
                 dateNow: action.date,
                 date: action.date,
-                dateBefore: getDateNew('minus', action.date)
+                dateBefore: DATE.getDateNew('minus', action.date),
+                startPeriodDate: DATE.getStartPeriodDate(action.date, state.period)
             }
         }
 
         case CHANGE_DATE: {
-            let dateNew = getDateNew(action.change, state.date);
-            let dateBeforeNew = getDateNew('minus', dateNew);
+            let dateNew = DATE.getDateNew(action.change, state.date);
+            let dateBeforeNew = DATE.getDateNew('minus', dateNew);
             console.log(dateNew)
             console.log(dateBeforeNew)
             return {
@@ -189,14 +181,44 @@ const courseReduser = (state = initialState, action) => {
                 ...state,
                 ratesBefore: ratesArr
             }
-
         }
 
         case TOGGLE_LOADING: {
+            return {...state, isLoading: action.isLoading}
+        }
+
+        case SET_NEW_PERIOD: {
+            // определение новой startPeriodDate
             return {
                 ...state,
-                isLoading: action.isLoading
+                period: action.period,
+                startPeriodDate: DATE.getStartPeriodDate(state.dateNow, action.period)
             }
+        }
+
+        case SET_RATES_FOR_PERIOD: {
+            let ratesArr = [];
+            for (let key in action.rates) {
+                let rate = action.rates[key][state.base].toFixed(4);
+                ratesArr.push([key, rate]);
+            }
+            // валидация на пропушенные дни
+            let ratesArrValid = [];
+            let dateCurr = state.startPeriodDate;
+            for (let i = 0; i < state.period; i++) {
+                // поиск в массиве ratesArr элемента el такого, что el[0]=dateCurr
+                // если он есть добавляем в его ratesArrValid
+                // если его нет добавляем пустую строку
+                let el = ratesArr.find(el => el[0] === dateCurr);
+                if (el) {
+                    ratesArrValid.push(el)
+                } else {
+                    ratesArrValid.push([dateCurr, null])
+                }
+                dateCurr = date.getDateNew('plus', dateCurr);
+            }
+
+            return {...state, ratesForPeriod: ratesArrValid}
         }
 
         default:
@@ -204,47 +226,23 @@ const courseReduser = (state = initialState, action) => {
     }
 };
 
-export const setNewBase = (base) => (
-    {
-        type: SET_NEW_BASE,
-        base: base
-    }
-);
-
-export const setRates = (rates) => (
-    {
-        type: SET_NEW_RATES,
-        rates: rates
-    }
-);
-
-export const setRatesBefore = (ratesBefore) => (
-    {
-        type: SET_NEW_RATES_BEFORE,
-        ratesBefore: ratesBefore
-    }
-);
-
-export const setDate = (date) => (
-    {
-        type: SET_DATE,
-        date: date
-    }
-);
-
-export const changeDate = (change) => (
-    {
-        type: CHANGE_DATE,
-        change: change,
-    }
-);
-
-export const toggleLoading = isLoading => (
-    {
-        type: TOGGLE_LOADING,
-        isLoading: isLoading
-    }
-);
+export const setNewBase = base => ({type: SET_NEW_BASE, base});
+export const setNewCurrency = currency => ({type: SET_NEW_CURRENCY, currency});
+export const setRates = rates => ({type: SET_NEW_RATES, rates});
+export const setRatesBefore = ratesBefore => ({type: SET_NEW_RATES_BEFORE, ratesBefore});
+export const setDate = date => ({type: SET_DATE, date});
+export const changeDate = change => ({type: CHANGE_DATE, change});
+export const toggleLoading = isLoading => ({type: TOGGLE_LOADING, isLoading});
+export const setNewPeriod = period => ({type: SET_NEW_PERIOD, period});
+export const setRatesForPeriod = rates => ({type: SET_RATES_FOR_PERIOD, rates});
+export const getRatesForPeriod = (startPeriodDate, dateNow, currency, base) => dispatch => {
+    dispatch(toggleLoading(true));
+    API.getByPeriod(startPeriodDate, dateNow, currency, base)
+        .then(data => {
+            dispatch(setRatesForPeriod(data.rates));
+            dispatch(toggleLoading(false));
+        });
+};
 
 export default courseReduser;
 

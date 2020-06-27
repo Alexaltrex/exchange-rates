@@ -1,3 +1,21 @@
 .statistic{
 
 }
+
+.currency{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.period{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.graph{
+    display: flex;
+    justify-content: center;
+}

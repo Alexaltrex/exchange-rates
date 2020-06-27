@@ -1,7 +1,8 @@
 .header{
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #006400;
     padding: 0 10px 0 20px;
 }
@@ -10,7 +11,7 @@
     font-size: 24px;
     color: #FFF;
     text-transform: uppercase;
-    line-height: 80px;
+
 }
 
 .nav{
@@ -23,7 +24,7 @@
     color: #fff;
     font-size: 20px;
     transition: .3s;
-    line-height: 80px;
+    
 }
 
 .item:hover, .active{

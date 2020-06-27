@@ -1,0 +1,21 @@
+.item {
+    flex-grow: 1;
+    margin: 1px 0;
+    position: relative;
+    height: 15px;
+}
+
+.rate {
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translate(100%, -50%);
+    white-space: nowrap;
+}
+
+.date {
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translate(-100%, -50%);
+}

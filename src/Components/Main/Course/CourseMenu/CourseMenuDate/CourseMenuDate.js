@@ -4,11 +4,13 @@ import style from './CourseMenuDate.module.css';
 const CourseMenuDate = (props) => {
 
     let onLeftArrowClick = () => {
-        props.leftArrowClick('minus');
+        props.changeDate('minus');
     };
 
     let onRightArrowClick = () => {
-        props.rightArrowClick('plus');
+        if (props.date !== props.dateNow) {
+            props.changeDate('plus')
+        }
     };
 
     return (

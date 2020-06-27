@@ -1,18 +1,17 @@
 import React from 'react';
 import style from './CourseItems.module.css'
 import CourseItem from "./CourseItem/CourseItem";
-import Preloader from "../../../Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader";
 
 const CourseItems = (props) => {
-    if (!props.rates.length || !props.ratesBefore.length) {
-        return <Preloader/>
-    }
+    // if (!props.rates.length || !props.ratesBefore.length) {
+    //     return <Preloader/>
+    // }
     let CourseItemElements = (props.rates.length !== 1) ?
         props.rates.map(
             (rate, index) => {
                 let nameOfCurrency = props.baseName.find(el => el[0] === rate.designationOfCurrency)[1];
                 //console.log(props.ratesBefore);
-
 
                 let change;
                 if (props.rates.length > 1 && props.ratesBefore.length > 1) {
@@ -20,11 +19,10 @@ const CourseItems = (props) => {
                     change = ((+rate.rateOfCurrency) - (+rateOfCurrencyBefore)).toFixed(6);
                 } else change = 'нет данных';
 
-
                 if (change > 0) {
                     change = `+${change}`
-                }
-                ;
+                };
+
                 return (
                     <CourseItem
                         key={index}

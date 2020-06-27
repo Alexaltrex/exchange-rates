@@ -1,12 +1,10 @@
 import React from 'react';
-import style from './CourseMenuBase.module.css';
+import style from './Base.module.css';
 
-const CourseMenuBase = (props) => {
+const Base = (props) => {
 
     let onBaseChange = (event) => {
-        let base = event.target.value;
-
-        props.setNewBase(base);
+        props.setNewBase(event.target.value);
     };
 
     let optionElements = props.baseName.map(
@@ -22,4 +20,4 @@ const CourseMenuBase = (props) => {
     )
 };
 
-export default CourseMenuBase;
+export default Base;
