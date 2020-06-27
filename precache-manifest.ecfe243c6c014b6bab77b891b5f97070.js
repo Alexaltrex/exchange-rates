@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a01e5ac6e1c9eaac09136e7959f0a66",
+    "revision": "7aa33f0578e1a7b3834de93c2ac657db",
     "url": "/exchange-rates/index.html"
   },
   {
-    "revision": "a42c6686b9a831a3f9b3",
-    "url": "/exchange-rates/static/css/main.34ed7261.chunk.css"
+    "revision": "bae172ee256b55c2e06a",
+    "url": "/exchange-rates/static/css/main.d682d4eb.chunk.css"
   },
   {
-    "revision": "a9b7e522a8a92ccf2e9c",
-    "url": "/exchange-rates/static/js/2.da096c62.chunk.js"
+    "revision": "60c2201884679eecd4ce",
+    "url": "/exchange-rates/static/js/2.12fd90bf.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/exchange-rates/static/js/2.da096c62.chunk.js.LICENSE.txt"
+    "url": "/exchange-rates/static/js/2.12fd90bf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a42c6686b9a831a3f9b3",
-    "url": "/exchange-rates/static/js/main.3f4e415b.chunk.js"
+    "revision": "bae172ee256b55c2e06a",
+    "url": "/exchange-rates/static/js/main.2a80ba4e.chunk.js"
   },
   {
     "revision": "c97f4def052fcbf6077d",
