@@ -93,8 +93,6 @@ const courseReduser = (state = initialState, action) => {
         case CHANGE_DATE: {
             let dateNew = DATE.getDateNew(action.change, state.date);
             let dateBeforeNew = DATE.getDateNew('minus', dateNew);
-            console.log(dateNew)
-            console.log(dateBeforeNew)
             return {
                 ...state,
                 date: dateNew,
@@ -199,7 +197,7 @@ const courseReduser = (state = initialState, action) => {
         case SET_RATES_FOR_PERIOD: {
             let ratesArr = [];
             for (let key in action.rates) {
-                let rate = action.rates[key][state.base].toFixed(4);
+                let rate = action.rates[key][state.base];//.toFixed(8)
                 ratesArr.push([key, rate]);
             }
             // валидация на пропушенные дни

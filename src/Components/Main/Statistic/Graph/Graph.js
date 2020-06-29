@@ -17,21 +17,30 @@ const Graph = (props) => {
         dateGraph = `${day}.${month}`;
 
         if (el[1]) {
-            width = Math.floor(100 * (50 + 250 * (el[1] - rateMin) / (rateMax - rateMin)) / 300) + '%';
-            colorRed = Math.floor(255 * (el[1] - rateMin) / (rateMax - rateMin));
-            colorGreen = Math.floor(255 * (rateMax - el[1]) / (rateMax - rateMin));
-            backgroundColor = `rgb(${colorRed},${colorGreen},0`;
-            rate = el[1];
 
-            if (+el[1] === rateMax) {
-                rate = `${el[1]} = maximum`;
+            if(rateMax !==rateMin){
+                width = Math.floor(100 * (50 + 250 * (el[1] - rateMin) / (rateMax - rateMin)) / 300) + '%';
+                colorRed = Math.floor(255 * (el[1] - rateMin) / (rateMax - rateMin));
+                colorGreen = Math.floor(255 * (rateMax - el[1]) / (rateMax - rateMin));
+                rate = el[1];
+                backgroundColor = `rgb(${colorRed},${colorGreen},0`;
+                if (+el[1] === rateMax) {
+                    rate = `${el[1]} = maximum`;
+                }
+                if (+el[1] === rateMin) {
+                    rate = `${el[1]} = minimum`;
+                }
+            } else {
+                colorRed = 254/2;
+                colorGreen = 254/2;
+                width='100%';
+                rate = el[1];
+                backgroundColor = `#aaa`;
             }
-            if (+el[1] === rateMin) {
-                rate = `${el[1]} = minimum`;
-            }
+
         } else {
             width = 0;
-            rate = 'no data';
+            rate = 'нет данных';
         }
         let style = {
             width: width,
@@ -41,7 +50,7 @@ const Graph = (props) => {
             styleItem={style}
             rate={rate}
             date={dateGraph}
-            key={el[0]}
+            //key={el[0]}
         />)
     });
 

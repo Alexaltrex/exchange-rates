@@ -12,7 +12,6 @@ class CourseItemsContainerAJAX extends React.Component {
         //this.props.toggleLoading(true);
         // получение из запроса - даты, курсов и вычисление предыдущей даты
         // передача даты, предыдущей даты и курсов в хранилище
-        console.log('ItemsContainer DidMount');
         API.getLatest(this.props.base)
             .then(data => {
                 let dateBefore = date.getDateNew('minus', data.date);
@@ -30,9 +29,7 @@ class CourseItemsContainerAJAX extends React.Component {
 
     componentDidUpdate(prevProps) {
         // получение параметров запроса из пропсов
-
         if (prevProps.base !== this.props.base || prevProps.date !== this.props.date) {
-            console.log('ItemsContainer DidUpdate');
             this.props.toggleLoading(true);
             let getRates = () => API.getByDate(this.props.date, this.props.base);
             let getRatesBefore = () => API.getByDate(this.props.dateBefore, this.props.base);
@@ -58,8 +55,8 @@ class CourseItemsContainerAJAX extends React.Component {
 let mapStateToProps = (state) => {
     return {
         course: state.course,
-        date: state.date,
-        dateBefore: state.dateBefore,
+        date: state.course.date,
+        dateBefore: state.course.dateBefore,
         base: state.course.base,
         baseName: state.course.baseName,
         rates: state.course.rates,

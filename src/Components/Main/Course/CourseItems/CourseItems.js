@@ -7,7 +7,7 @@ const CourseItems = (props) => {
     // if (!props.rates.length || !props.ratesBefore.length) {
     //     return <Preloader/>
     // }
-    let CourseItemElements = (props.rates.length !== 1) ?
+    let CourseItemElements = (props.rates.length !== 0) ?
         props.rates.map(
             (rate, index) => {
                 let nameOfCurrency = props.baseName.find(el => el[0] === rate.designationOfCurrency)[1];

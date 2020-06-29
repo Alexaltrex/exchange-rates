@@ -1,0 +1,18 @@
+.select {
+    display: flex;
+}
+
+.item {
+    border: 1px solid black;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.selected{
+    background-color: #09aa00;
+    color: #FFFFFF;
+    cursor: default;
+}

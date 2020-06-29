@@ -2,8 +2,8 @@ import React from 'react';
 import style from './Main.module.css'
 import {Route, Switch} from "react-router-dom";
 import Statistic from "./Statistic/Statistic";
-import Converter from "./Converter/Converter";
 import Course from "./Course/Course";
+import ConverterContainer from "./Converter/ConverterContainer";
 
 const Main = () => {
     return (
@@ -23,7 +23,7 @@ const Main = () => {
 
                 <Route
                     path='/converter'
-                    render={() => <Converter/>}/>
+                    render={() => <ConverterContainer/>}/>
 
             </Switch>
 

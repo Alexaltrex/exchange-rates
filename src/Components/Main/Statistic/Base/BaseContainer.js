@@ -8,8 +8,7 @@ import {
     toggleLoading
 } from "../../../../Redux/course-reduser";
 import {DATE} from "../../../../DAL/date";
-import Base from "./Base";
-
+import Base from "../../../common/Base/Base";
 
 class BaseContainerAJAX extends React.Component {
     componentDidMount() {

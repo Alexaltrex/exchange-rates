@@ -6,6 +6,7 @@ const CourseItem = (props) => {
     if (+props.change>0) {
         styleColor = style.green
     } else {styleColor = style.red}
+
     return (
         <div className={style.courseItems}>
             <div className={style.nameOfCurrency}>
