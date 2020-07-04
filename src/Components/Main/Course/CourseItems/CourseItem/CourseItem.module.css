@@ -48,12 +48,14 @@
 
 .change{
     height: 30px;
-    width: 100px;
-    line-height: 30px;
-    text-align: right;
-    padding-right: 10px;
+    width: 120px;
+    padding: 0 10px;
     box-sizing: border-box;
     border-radius: 3px 0 0 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 .green{
    color: #09aa00;
@@ -66,3 +68,36 @@
 .courseItems:nth-child(even) .change{
     background-color: #ccc;
 }
+
+.change .icon {
+    height: 30px;
+    min-width: 25px;
+    position: relative;
+}
+.change .icon.red:after{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'icomoon';
+    content: "\f01a";
+    font-size: 25px;
+    color: red;
+}
+
+.change .icon.green:after{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'icomoon';
+    content: "\f01b";
+    font-size: 25px;
+    color: darkgreen;
+}
+
+.number{
+      line-height: 30px;
+}
+
+

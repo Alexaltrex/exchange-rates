@@ -1,0 +1,15 @@
+.item{
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    /*background-color: transparent;*/
+    padding: 5px 10px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+   }
+.item:hover{
+    background-color: #b2c9d2;
+    color: #FFFFFF;
+}

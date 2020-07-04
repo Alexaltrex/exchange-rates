@@ -1,18 +1,70 @@
+.title{
+    margin-bottom: 10px;
+}
+
 .select {
     display: flex;
+    position: relative;
 }
 
 .item {
-    border: 1px solid black;
+    box-sizing: border-box;
     height: 30px;
     line-height: 30px;
-    width: 100px;
+    width: 85px;
     text-align: center;
     cursor: pointer;
+    outline: none;
+    border: none;
+    display: block;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    border-right: 1px solid #aaa;
 }
 
-.selected{
+.item:first-child {
+    border-left: 1px solid #aaa;
+    border-radius: 5px 0 0 5px;
+}
+
+.item.selected {
     background-color: #09aa00;
     color: #FFFFFF;
     cursor: default;
+}
+
+.modalActivator {
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 30px;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    border: 1px solid #aaa;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+}
+
+.modalActivator:after {
+    content: '∨';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalActivator.select {
+    cursor: default;
+    background-color: #09aa00;
+    color: #FFFFFF;
+}
+
+.modalActivator.select:after {
+    content: '∧';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -1,0 +1,25 @@
+.input{
+    /*background-color: darkgreen;*/
+    width: 380px;
+    height: 140px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+input{
+   display: block;
+    /*width: calc(100% - 40px);*/
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    margin: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    background-color: transparent;
+}
+
+.label{
+    margin-left: 20px;
+    font-size: 20px;
+}
