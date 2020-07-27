@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/exchange-rates/static/css/main.fb923586.chunk.css",
-    "main.js": "/exchange-rates/static/js/main.9585c82e.chunk.js",
-    "main.js.map": "/exchange-rates/static/js/main.9585c82e.chunk.js.map",
+    "main.css": "/exchange-rates/static/css/main.925f41e6.chunk.css",
+    "main.js": "/exchange-rates/static/js/main.9c98d16e.chunk.js",
+    "main.js.map": "/exchange-rates/static/js/main.9c98d16e.chunk.js.map",
     "runtime-main.js": "/exchange-rates/static/js/runtime-main.f42318c0.js",
     "runtime-main.js.map": "/exchange-rates/static/js/runtime-main.f42318c0.js.map",
-    "static/js/2.be4a809a.chunk.js": "/exchange-rates/static/js/2.be4a809a.chunk.js",
-    "static/js/2.be4a809a.chunk.js.map": "/exchange-rates/static/js/2.be4a809a.chunk.js.map",
+    "static/js/2.c7b9d61f.chunk.js": "/exchange-rates/static/js/2.c7b9d61f.chunk.js",
+    "static/js/2.c7b9d61f.chunk.js.map": "/exchange-rates/static/js/2.c7b9d61f.chunk.js.map",
     "index.html": "/exchange-rates/index.html",
-    "precache-manifest.f1830f7c25d45e310e90e515d136d42b.js": "/exchange-rates/precache-manifest.f1830f7c25d45e310e90e515d136d42b.js",
+    "precache-manifest.09162e53dbe2e6ba965a0de1563a42c9.js": "/exchange-rates/precache-manifest.09162e53dbe2e6ba965a0de1563a42c9.js",
     "service-worker.js": "/exchange-rates/service-worker.js",
-    "static/css/main.fb923586.chunk.css.map": "/exchange-rates/static/css/main.fb923586.chunk.css.map",
-    "static/js/2.be4a809a.chunk.js.LICENSE.txt": "/exchange-rates/static/js/2.be4a809a.chunk.js.LICENSE.txt",
-    "static/media/Home.module.css": "/exchange-rates/static/media/icomoon.d2dd440b.svg",
-    "static/media/oval.svg": "/exchange-rates/static/media/oval.be00fc4a.svg"
+    "static/css/main.925f41e6.chunk.css.map": "/exchange-rates/static/css/main.925f41e6.chunk.css.map",
+    "static/js/2.c7b9d61f.chunk.js.LICENSE.txt": "/exchange-rates/static/js/2.c7b9d61f.chunk.js.LICENSE.txt",
+    "static/media/circles.svg": "/exchange-rates/static/media/circles.1181204b.svg",
+    "static/media/index.css": "/exchange-rates/static/media/icomoon.d2dd440b.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f42318c0.js",
-    "static/js/2.be4a809a.chunk.js",
-    "static/css/main.fb923586.chunk.css",
-    "static/js/main.9585c82e.chunk.js"
+    "static/js/2.c7b9d61f.chunk.js",
+    "static/css/main.925f41e6.chunk.css",
+    "static/js/main.9c98d16e.chunk.js"
   ]
 }
