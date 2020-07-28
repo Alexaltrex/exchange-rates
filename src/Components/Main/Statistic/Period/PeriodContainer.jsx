@@ -1,7 +1,6 @@
 import {connect} from "react-redux";
-import {} from "../../../../Redux/course-reducer";
 import Period from "./Period";
-import {setNewPeriod, setRatesForPeriod} from "../../../../Redux/statistic-reducer";
+import {setNewPeriod} from "../../../../Redux/statistic-reducer";
 
 let mapStateToProps = state => {
     return {

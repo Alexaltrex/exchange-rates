@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./SelectItem.module.css";
 
 const SelectItem = (props) => {
     let onClick = (e) => {

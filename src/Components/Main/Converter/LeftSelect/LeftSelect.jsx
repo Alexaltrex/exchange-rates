@@ -23,12 +23,6 @@ const LeftSelect = (props) => {
     let style5 = (props.leftModalIsActive)
         ? `${style.modalActivator} ${style.select}`
         : style.modalActivator;
-    let onClick = (e) => {
-        if (leftCurr !== e.currentTarget.innerText) {
-            props.setLeftCurrency(e.currentTarget.innerText);
-        }
-    };
-
     let toggleModal = () => {
         props.toggleLeftModal(true);
     };

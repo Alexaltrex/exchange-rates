@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Preloader.module.css';
-import preloader from '../../../assets/oval.svg'
+import preloader from '../../../assets/circles.svg'
 
 let Preloader = () => {
     return (

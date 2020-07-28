@@ -13,7 +13,8 @@ let Modal = (props) => {
 
     let modalItems = props.baseName.map((el, index) => {
         if (el[0] !== 'RUB' && el[0] !== 'USD' && el[0] !== 'EUR')
-            return <ModalItem data-code={el[1]}
+            return <ModalItem key={index}
+                              data-code={el[1]}
                               name={el[1]}
                               code={el[0]}
                               leftModalIsActive={props.leftModalIsActive}
@@ -54,7 +55,9 @@ let mapStateToProps = (state) => ({
 
 
 let ModalContainer = connect(mapStateToProps,
-    {setLeftCurrency, setRightCurrency, setLeftCurrencyAdd,
-        setRightCurrencyAdd, toggleLeftModal, toggleRightModal})(Modal)
+    {
+        setLeftCurrency, setRightCurrency, setLeftCurrencyAdd,
+        setRightCurrencyAdd, toggleLeftModal, toggleRightModal
+    })(Modal)
 
 export default ModalContainer;

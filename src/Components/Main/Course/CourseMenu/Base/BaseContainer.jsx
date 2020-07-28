@@ -5,11 +5,16 @@ import Base from "../../../../common/Base/Base";
 let mapStateToProps = (state) => {
     return {
         baseName: state.course.baseName,
-        base: state.course.base,
+        value: state.course.base,
         }
 };
 
-const BaseContainer = connect(mapStateToProps,
-    {setNewBase})(Base);
+const mapDispatchToProps = (dispatch) => ({
+    setNewValue: (value) => {
+        dispatch(setNewBase(value));
+    }
+});
+
+const BaseContainer = connect(mapStateToProps, mapDispatchToProps)(Base);
 
 export default BaseContainer;

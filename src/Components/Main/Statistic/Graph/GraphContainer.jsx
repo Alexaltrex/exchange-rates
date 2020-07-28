@@ -1,10 +1,8 @@
 import Graph from "./Graph";
 import {connect} from "react-redux";
 import React from 'react';
-import {statisticAPI} from "../../../../DAL/api";
-import {DATE} from "../../../../DAL/date";
 import {toggleLoading} from "../../../../Redux/course-reducer";
-import {getDateInitial, getRatesForPeriod, getRatesInitial, setDate} from "../../../../Redux/statistic-reducer";
+import {getRatesForPeriod, getRatesInitial, setDate} from "../../../../Redux/statistic-reducer";
 
 class GraphContainerAJAX extends React.Component {
     componentDidMount() {

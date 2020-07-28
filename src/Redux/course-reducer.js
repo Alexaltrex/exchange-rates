@@ -1,12 +1,14 @@
 import {DATE as date, DATE} from "../DAL/date";
-import {courseAPI, statisticAPI} from "../DAL/api";
-const SET_NEW_BASE = 'SET-NEW-BASE';
-const SET_NEW_RATES = 'SET-NEW-RATES';
-const SET_NEW_RATES_BEFORE = 'SET-NEW-RATES-BEFORE';
-const SET_DATE = 'SET-DATE';
-const CHANGE_DATE = 'CHANGE_DATE';
-const TOGGLE_LOADING = 'TOGGLE-LOADING';
+import {courseAPI} from "../DAL/api";
 
+const SET_NEW_BASE = 'course/SET-NEW-BASE';
+const SET_NEW_RATES = 'course/SET-NEW-RATES';
+const SET_NEW_RATES_BEFORE = 'course/SET-NEW-RATES-BEFORE';
+const SET_DATE = 'course/SET-DATE';
+const SET_DATE_NOW = 'course/SET_DATE_NOW';
+const SET_DATE_BEFORE = 'course/SET_DATE_BEFORE';
+const CHANGE_DATE = 'course/CHANGE_DATE';
+const TOGGLE_LOADING = 'course/TOGGLE-LOADING';
 
 let initialState = {
     baseName: [
@@ -49,12 +51,8 @@ let initialState = {
     base: 'RUB',
     dateNow: '2010-06-06', // дата на данный момент времени
     date: '2010-06-06',     // изменяемая дата
-    dateBefore: '2010-06-06',
-    isloading: false,
-    //currency: 'EUR',// выбранная валюта для статистики
-    //ratesForPeriod: [], // массив курсов за период
-    //period: 14, // период
-    //startPeriodDate: '' // начальная дата периода
+    dateBefore: '2010-06-06', // предыдущая от date
+    isLoading: false
 };
 
 
@@ -69,22 +67,23 @@ const courseReducer = (state = initialState, action) => {
             }
         }
 
-        case SET_DATE: {// первоначальная установка текущей даты и даты на данный момент времени и предыдущей дата
-            return {
-                ...state,
-                dateNow: action.date,
-                date: action.date,
-                dateBefore: DATE.getDateNew('minus', action.date),
-            }
+        case SET_DATE: {// первоначальная установка текущей даты
+            return {...state, date: action.date}
+        }
+
+        case SET_DATE_NOW: {// первоначальная установка даты на данный момент времени
+            return {...state, dateNow: action.dateNow}
+        }
+
+        case SET_DATE_BEFORE: {// первоначальная установка предыдущей даты
+            return {...state, dateBefore: action.dateBefore}
         }
 
         case CHANGE_DATE: {
-            let dateNew = DATE.getDateNew(action.change, state.date);
-            let dateBeforeNew = DATE.getDateNew('minus', dateNew);
             return {
                 ...state,
-                date: dateNew,
-                dateBefore: dateBeforeNew
+                date: action.dateNew,
+                dateBefore: action.dateBeforeNew
             }
         }
 
@@ -126,7 +125,6 @@ const courseReducer = (state = initialState, action) => {
                 ...state,
                 rates: ratesArr
             }
-
         }
 
         case SET_NEW_RATES_BEFORE: {
@@ -178,11 +176,19 @@ const courseReducer = (state = initialState, action) => {
     }
 };
 
-export const setNewBase = base => ({type: SET_NEW_BASE, base});
-export const setRates = rates => ({type: SET_NEW_RATES, rates});
-export const setRatesBefore = ratesBefore => ({type: SET_NEW_RATES_BEFORE, ratesBefore});
-export const setDate = date => ({type: SET_DATE, date});
-export const changeDate = change => ({type: CHANGE_DATE, change});
+export const setNewBase = (base) => ({type: SET_NEW_BASE, base});
+export const setRates = (rates) => ({type: SET_NEW_RATES, rates});
+export const setRatesBefore = (ratesBefore) => ({type: SET_NEW_RATES_BEFORE, ratesBefore});
+export const setDate = (date) => ({type: SET_DATE, date});
+export const setDateNow = (dateNow) => ({type: SET_DATE_NOW, dateNow});
+export const setDateBefore = (dateBefore) => ({type: SET_DATE_BEFORE, dateBefore});
+
+export const changeDate = (change, date) => {
+    let dateNew = DATE.getDateNew(change, date);
+    let dateBeforeNew = DATE.getDateNew('minus', dateNew);
+    return {type: CHANGE_DATE, dateNew, dateBeforeNew}
+};
+
 export const toggleLoading = isLoading => ({type: TOGGLE_LOADING, isLoading});
 
 export const setAfterMount = (base) => dispatch => {
@@ -193,6 +199,8 @@ export const setAfterMount = (base) => dispatch => {
             dateBefore = date.getDateNew('minus', data.date);
             dispatch(setRates(data.rates));
             dispatch(setDate(data.date));
+            dispatch(setDateNow(data.date));
+            dispatch(setDateBefore(dateBefore));
             return courseAPI.getByDate(dateBefore, base)
         })
         .then(data => {
@@ -202,7 +210,6 @@ export const setAfterMount = (base) => dispatch => {
 };
 
 export const setAfterUpdate = (date, dateBefore, base) => dispatch => {
-
     dispatch(toggleLoading(true));
     let getRates = () => courseAPI.getByDate(date, base);
     let getRatesBefore = () => courseAPI.getByDate(dateBefore, base);

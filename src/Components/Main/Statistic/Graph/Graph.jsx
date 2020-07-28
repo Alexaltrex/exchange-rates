@@ -9,7 +9,7 @@ const Graph = (props) => {
     let rateMax = Math.max.apply(null, rates);
     let rateMin = Math.min.apply(null, rates);
 
-    let items = props.rates.map((el) => {
+    let items = props.rates.map((el, i) => {
         let rate, dateGraph, width, colorRed, colorGreen, backgroundColor, rateStyle;
 
         let month = el[0].match(/\d+/g)[1];
@@ -25,12 +25,12 @@ const Graph = (props) => {
                 rate = el[1];
                 backgroundColor = `rgb(${colorRed},${colorGreen},0`;
                 if (+el[1] === rateMax) {
-                    rate = `${el[1]} = maximum`;
-                    rateStyle = {color: 'darkred'}
+                    rate = `${el[1]} = MAX`;
+                    rateStyle = {color: 'red'}
                 }
                 if (+el[1] === rateMin) {
-                    rate = `${el[1]} = minimum`;
-                    rateStyle = {color: 'darkgreen'}
+                    rate = `${el[1]} = MIN`;
+                    rateStyle = {color: 'green'}
                 }
             } else {
                 colorRed = 254/2;
@@ -53,7 +53,7 @@ const Graph = (props) => {
             rate={rate}
             date={dateGraph}
             rateStyle={rateStyle}
-            //key={el[0]}
+            key={i}
         />)
     });
 

@@ -7,9 +7,12 @@
     height: 30px;
     width: 300px;
     line-height: 30px;
-    padding-left: 10px;
+    padding: 0 10px;
     box-sizing: border-box;
     border-radius: 0 3px 3px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .courseItems:nth-child(odd) .nameOfCurrency{
@@ -26,6 +29,18 @@
     padding-left: 10px;
     box-sizing: border-box;
     border-radius: 3px;
+}
+
+.nameOfCurrencyButton{
+    background-color: darkred;
+    padding: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.nameOfCurrencyButton a{
+    text-decoration: none;
+    color: #fff;
 }
 
 .courseItems:nth-child(even) .designationOfCurrency{
@@ -93,7 +108,7 @@
     font-family: 'icomoon';
     content: "\f01b";
     font-size: 25px;
-    color: darkgreen;
+    color: #00b400;
 }
 
 .number{

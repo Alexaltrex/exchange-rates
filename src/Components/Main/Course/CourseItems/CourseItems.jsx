@@ -1,12 +1,9 @@
 import React from 'react';
 import style from './CourseItems.module.css'
 import CourseItem from "./CourseItem/CourseItem";
-import Preloader from "../../../common/Preloader/Preloader";
 
 const CourseItems = (props) => {
-    // if (!props.rates.length || !props.ratesBefore.length) {
-    //     return <Preloader/>
-    // }
+
     let CourseItemElements = (props.rates.length !== 0) ?
         props.rates.map(
             (rate, index) => {
@@ -29,6 +26,7 @@ const CourseItems = (props) => {
                         nameOfCurrency={nameOfCurrency}
                         rateOfCurrency={rate.rateOfCurrency}
                         change={change}
+                        setNewCurrency={props.setNewCurrency}
                     />
                 )
             }

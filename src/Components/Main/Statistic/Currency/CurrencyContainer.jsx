@@ -1,15 +1,20 @@
 import {connect} from "react-redux";
-import Currency from "./Currency";
 import {setNewCurrency} from "../../../../Redux/statistic-reducer";
+import Base from "../../../common/Base/Base";
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         baseName: state.course.baseName,
-        currency: state.statistic.currency
+        value: state.statistic.currency
     }
 };
 
-const CurrencyContainer = connect(mapStateToProps,
-    {setNewCurrency})(Currency);
+const mapDispatchToProps = (dispatch) => ({
+    setNewValue: (value) => {
+        dispatch(setNewCurrency(value));
+    }
+});
+
+const CurrencyContainer = connect(mapStateToProps, mapDispatchToProps)(Base);
 
 export default CurrencyContainer;

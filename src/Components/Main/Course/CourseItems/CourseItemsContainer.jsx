@@ -10,6 +10,7 @@ import {
     toggleLoading
 } from "../../../../Redux/course-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
+import {setNewCurrency} from "../../../../Redux/statistic-reducer";
 
 class CourseItemsContainerAJAX extends React.Component {
     componentDidMount() {
@@ -47,6 +48,6 @@ let mapStateToProps = (state) => {
 };
 
 let CourseItemsContainer = connect(mapStateToProps,
-    {setRates, setDate, toggleLoading, setRatesBefore, setAfterMount, setAfterUpdate})(CourseItemsContainerAJAX);
+    {setRates, setDate, toggleLoading, setRatesBefore, setAfterMount, setAfterUpdate, setNewCurrency})(CourseItemsContainerAJAX);
 
 export default CourseItemsContainer;

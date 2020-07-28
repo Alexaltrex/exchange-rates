@@ -5,12 +5,12 @@ import BaseContainer from "./Base/BaseContainer";
 
 const CourseMenu = () => {
     return (
-        <div className={style.courseMenu}>
-            <div className={style.courseMenuBase}>
+        <div className={style.menu}>
+            <div className={style.base}>
                 <div>Курс по отношению к</div>
                 <BaseContainer/>
             </div>
-            <div className={style.courseMenuDate}>
+            <div className={style.date}>
                 <div>Дата</div>
                 <DateContainer/>
             </div>

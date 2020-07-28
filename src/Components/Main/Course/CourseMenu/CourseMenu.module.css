@@ -1,18 +1,22 @@
-.courseMenu{
+.menu{
     /*height: 50px;*/
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     justify-content: center;
     align-items: center;
 }
 
-.courseMenuBase {
+.base {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 10px 0;
 }
 
-.courseMenuDate {
+.date {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 10px;
 }
 

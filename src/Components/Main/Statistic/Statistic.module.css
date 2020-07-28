@@ -9,9 +9,14 @@
     padding: 10px 0;
 }
 
+.text{
+    margin: 0px 5px 0 10px;
+}
+
 .period{
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 10px 0;
 }
 

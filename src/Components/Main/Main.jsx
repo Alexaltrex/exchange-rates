@@ -11,11 +11,11 @@ const Main = () => {
     return (
         <main className={style.main}>
             <Switch>
-                <Route exact path='/exchange-rates' render={() => <Home/>}/>
-                <Route exact path='/' render={() => <Home/>}/>
-                <Route path='/course' render={() => <Course/>}/>
-                <Route path='/statistic' render={() => <Statistic/>}/>
-                <Route path='/converter' render={() => <ConverterContainer/>}/>
+                {/*<Route exact path='/exchange-rates' render={() => <Home/>}/>*/}
+                <Route exact path='/' component={Home}/>
+                <Route path='/course' component={Course}/>
+                <Route path='/statistic' component={Statistic}/>
+                <Route path='/converter' component={ConverterContainer}/>
             </Switch>
         </main>
     )
