@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# exchange-rates
+Ссылка: https://alexaltrex.github.io/exchange-rates
 
-## Available Scripts
+## Описание
+Курсы валют: база данных обменных курсов, статистика изменения, калькулятор обмена
 
-In the project directory, you can run:
+## Запуск проекта:
+Для установки и запуска необходимы установленные программы: Node.js, npm, Git;
+1. Клонирование и запуск: git clone https://github.com/Alexaltrex/exchange-rates.git;
+2. Переход в директорию с проектом: cd exchange-rates;
+3. Установка зависимостей: npm install;
+4. Запуск проекта в режиме разработки: npm start;
+5. Перейти в браузер и открыть страницу: http://localhost:3000.
 
-### `yarn start`
+## Цель проекта
+* Знакомство с React (первое приложение на React);
+* Изучение redux, react-redux
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Разработка
+* Приложение разработано на базе библиотеки React v.16.13.1 с использованием Create React App (https://github.com/facebook/create-react-app);
+* Приложение разработано на базе API: 'https://api.exchangeratesapi.io';
+* Глобальное состояние: управление - Redux v.4.0.5, доступ - доступ - react-redux (connect) v.7.2.1;
+* Деление компонент на "глупые" функциональные и контейнерные (обертки для доступа к store или классовые для побочных эффектов); 
+* Побочные эффекты: методы жизненного цикла componentDidMount и componentDidUpdate классовых компонент
+* Роутинг: React-router-dom v.5.2.0
+* Асинхронный код: Redux-thunk v.2.3.0
+* Сетевые запросы: Axios v.0.19.2
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Структура приложения
+Заголовок и основной контент.
 
-### `yarn test`
+### 1. Заголовок:
+* Логотип;
+* Главное меню с ссылками на страницы "Курсы", "Статистика", "Конвертер"
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Страница "Курсы"
+* Верхняя панель управления с возможностью выбора валюты, относительно которой показан курс обмена и поля выбора даты.
+* Таблица данных с курсом обмена для списка стран. Для каждой строки есть возможность перейти на страницу "Статистика" с соответствующей для этой пары валют статистикой.
+ 
+<img src="src/assets/01.jpg" width="800">
 
-### `yarn build`
+### Страница "Статистика"
+Статистика изменения курса валют по времени
+* Верхняя панель управления с возможностью выбора пары валют и периода времени.
+* Графическое представление изменения курса валют по времени
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="src/assets/02.jpg" width="800">
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Страница "Конвертер"
+Калькулятор обмена валют
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<img src="src/assets/03.jpg" width="800">
+<img src="src/assets/04.jpg" width="800">
