@@ -1,4 +1,4 @@
-import {DATE as date, DATE} from "../DAL/date";
+import {DATE as date, DATE} from "../Helpers/date";
 import {courseAPI} from "../DAL/api";
 
 const SET_NEW_BASE = 'course/SET-NEW-BASE';

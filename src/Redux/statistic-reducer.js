@@ -1,4 +1,4 @@
-import {DATE as date, DATE} from "../DAL/date";
+import {DATE as date, DATE} from "../Helpers/date";
 import {statisticAPI} from "../DAL/api";
 import {toggleLoading} from "./course-reducer";
 
