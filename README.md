@@ -19,7 +19,7 @@
 ## Разработка
 * Приложение разработано на базе библиотеки React v.16.13.1 с использованием Create React App (https://github.com/facebook/create-react-app);
 * Приложение разработано на базе API: 'https://api.exchangeratesapi.io';
-* Глобальное состояние: управление - Redux v.4.0.5, доступ - доступ - react-redux (connect) v.7.2.1;
+* Глобальное состояние: управление - Redux v.4.0.5, доступ - react-redux (connect) v.7.2.1;
 * Деление компонент на "глупые" функциональные и контейнерные (обертки для доступа к store или классовые для побочных эффектов); 
 * Побочные эффекты: методы жизненного цикла componentDidMount и componentDidUpdate классовых компонент
 * Роутинг: React-router-dom v.5.2.0
